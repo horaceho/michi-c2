@@ -72,7 +72,7 @@ char* debug(Game *game)
     if (strcmp(command, "setpos") == 0) {
         char *str = strtok(NULL, " \t\n");
         while (str != NULL) {
-            Info m;
+            Info m = 0;
             int  played=0;
             Point pt = parse_coord(str);
             if (point_color(pos, pt) == EMPTY) {

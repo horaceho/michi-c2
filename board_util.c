@@ -104,7 +104,7 @@ void* michi_malloc(size_t size)
 {
     void* t = malloc(size);
     if (t == NULL) {
-        log_fmt_i('E',"Memory allocation failed (size = %d bytes)", size);
+        log_fmt_i('E',"Memory allocation failed (size = %d bytes)", (int)size);
         exit(-1);
     }
     return t;
@@ -115,7 +115,7 @@ void* michi_calloc(size_t nmemb, size_t size)
 {
     void* t = calloc(nmemb, size);
     if (t == NULL) {
-        log_fmt_i('E',"Memory allocation failed (size = %d bytes)", size*nmemb);
+        log_fmt_i('E',"Memory allocation failed (size = %d bytes)", (int)(size*nmemb));
         exit(-1);
     }
     return t;
@@ -197,7 +197,7 @@ char* slist_str_as_point(Slist l) {
 char* slist_from_str_as_point(Slist l, char *str)
 {
     char *ret, *s;
-    Point pt;
+    Point pt = INVALID_VERTEX;
 
     slist_clear(l);
     if (str != NULL) {

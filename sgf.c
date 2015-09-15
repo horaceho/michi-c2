@@ -46,7 +46,7 @@ char* do_play(Game *game, Color c, Point pt)
     char *ret;
     Color to_play_before;
     int   played=0;
-    Info  m;
+    Info  m = 0;
     Position *pos = game->pos;
 
     to_play_before = board_color_to_play(pos);
