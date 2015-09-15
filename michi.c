@@ -81,7 +81,7 @@ Short bibliography
 //
 // -------------------------------- Global Data -------------------------------
 Mark         *mark1, *mark2, *already_suggested;
-char         buf[BUFLEN];
+static char  buf[BUFLEN];
 static int   disp_ladder;
 static char* colstr  = "@ABCDEFGHJKLMNOPQRST";
 

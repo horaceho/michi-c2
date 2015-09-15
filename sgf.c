@@ -1,7 +1,7 @@
 // sgf.c -- Read and write SGF files for the michi-c gtp engine
 #include "michi.h"
 
-char buf[128];    
+static char buf[128];
 FILE *f;           // source of the sgf data
 Game *game;        // game in which the sgf file will be written
 int  nmoves;       // number of moves loaded from the sgf file
