@@ -215,7 +215,7 @@ char* token_name(int tok)
     return buf;
 }
 
-void accept(int tok)
+void yyaccept(int tok)
 {
     if (symbol == tok) symbol = yylex();
     else {
@@ -233,7 +233,7 @@ void ValueType(void)
 {
     if (symbol == POINT || symbol == STRING || symbol == UPPERCASE_STRING
         || symbol == NUMBER || symbol == REAL) {
-        accept(symbol);
+        yyaccept(symbol);
         //fprintf(stderr, "%s ", yytext);
     }
 }
@@ -241,7 +241,7 @@ void ValueType(void)
 void PropValue(void)
 // PropValue = "[" ValueType "]"
 {
-    accept('['); ValueType();
+    yyaccept('['); ValueType();
 
     // Property Value was read : use it to modify the game
     int size = board_size(game->pos);
@@ -307,7 +307,7 @@ void PropValue(void)
             board_set_color_to_play(game->pos, WHITE);
     }
 
-    accept(']');
+    yyaccept(']');
 }
 
 void PropValues(void)
@@ -326,7 +326,7 @@ void PropIdent(void)
         //    fprintf(stderr, "prop %s: ",  yytext);
         //else
         //    fprintf(stderr, "unknown %s: ",  yytext);
-        accept(UPPERCASE_STRING);
+        yyaccept(UPPERCASE_STRING);
     }
 }
 
@@ -348,7 +348,7 @@ void Properties(void)
 void Node(void)
 // Node = ";" Properties
 {
-    accept(';'); Properties();
+    yyaccept(';'); Properties();
 }
 
 void RestOfSequence(void)
@@ -369,7 +369,7 @@ void RestOfCollection(void);
 void GameTree(void)
 // GameTree = "(" Sequence RestOfCollection ")"
 {
-    accept('('); Sequence(); RestOfCollection(); accept(')');
+    yyaccept('('); Sequence(); RestOfCollection(); yyaccept(')');
 }
 
 void RestOfCollection(void)
